@@ -11,7 +11,7 @@
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    
+
     <form action="{{ route('produtos.search') }}" method="GET" class="mb-4">
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Buscar produto..." value="{{ request('search') }}">
@@ -23,6 +23,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Imagem</th>
                 <th>Nome</th>
                 <th>Preço</th>
                 <th>Marca</th>
@@ -34,6 +35,13 @@
             @foreach ($produtos as $produto)
                 <tr>
                     <td>{{ $produto->idProduto }}</td>
+                    <td>
+                        @if($produto->img)
+                            <img src="{{ asset('storage/' . $produto->img) }}" alt="Imagem do Produto" width="100">
+                        @else
+                            <span>Sem imagem</span>
+                        @endif
+                    </td>
                     <td>{{ $produto->nome }}</td>
                     <td>R$ {{ number_format($produto->preco, 2, ',', '.') }}</td>
                     <td>{{ $produto->marca }}</td>

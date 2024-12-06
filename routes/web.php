@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,5 @@ Route::resource('produtos', ProdutoController::class);
 
 Route::get('/produtos/search', [ProdutoController::class, 'search'])->name('produtos.search');
 
-
+Route::resource('pedidos', PedidoController::class);
 
